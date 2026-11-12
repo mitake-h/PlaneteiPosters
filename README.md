@@ -19,7 +19,8 @@ VRChat ワールド「ぷらね邸」が読み込む画像と一覧（GitHub Pag
 {
   "programs": [
     {
-      "slot": 2,
+      "slot": 3,
+      "published": "2026-03-20",
       "title": "番組の題名",
       "role": "出演",
       "guide": "名前",
@@ -30,12 +31,13 @@ VRChat ワールド「ぷらね邸」が読み込む画像と一覧（GitHub Pag
 }
 ```
 
-- 書いた順に並ぶ（最大 16）。
-- `slot` は番組の枠の番号。動画の URL はワールドの枠に入れてある（VRChat の決まりで、動画の URL はワールドに入れておく必要がある）。
+- 並び順は**新着順**: 再生できる番組を `published`（公開日）の新しい順に。公開日を書かない番組はそのあとに書いた順、`"slot": 0`（COMING SOON）は一番下に書いた順（最大 16 件）。
+- `slot` は番組の枠の番号（1〜16）。枠 N の動画は VRCDN の `https://vrcdn.cloud/static/jumius_program<N>`（ワールドに入れてある。VRChat の決まりで、動画の URL はワールドに入れておく必要がある）。
   - 1 = ぷらね邸 1周年に寄せて、2 = 熟睡プラ寝たリウム in VRChat 2025。
-  - 0 か、URL を入れていない枠は「COMING SOON」（再生ボタンなし）。
+  - 0 は「COMING SOON」（再生ボタンなし）。
 - サムネイルは `programs/` に枠の番号で置く（枠 1 は `01.jpg`）。
-- 新しい番組を足すとき: ワールド側で空いている枠（3〜16）に動画の URL を入れてアップロードし直し、ここに JSON と `programs/NN.jpg` を足す。
+- **新しい番組を足すとき（ワールドの更新は不要）**: VRCDN に動画を上げて `jumius_program<N>` の別名を付ける → ここに `"slot": N`・`"published"` の項目と `programs/NN.jpg` を足して push。
+  - 例: 春の大曲線を公開するときは `"slot": 0` を `"slot": 3` に、`"published"` に公開日を書く（一番上に来る）。
 
 ## events.json（プラネタリウムイベント）
 
